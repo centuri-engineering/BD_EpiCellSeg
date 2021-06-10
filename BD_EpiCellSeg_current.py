@@ -17,7 +17,7 @@ from scipy.ndimage import binary_fill_holes
 
 #%% Inputs
 ROOTPATH = 'D:/CurrentTasks/CENTURI_SummerSchool(2021)/GBE_40x(20s)_67xYW-Frlwt(F2)/'
-FILENAME = 'FrlOE_18-07-11_GBE_67xFrlwt_(F2)_a01_StackCrop.tif'
+STACKNAME = 'FrlOE_18-07-11_GBE_67xFrlwt_(F2)_a01_StackCrop.tif'
 
 RSIZE_FACTOR = 2 # reduce image size by this factor (2)
 SATO_SIGMA = 4/RSIZE_FACTOR # sigma size for sato ridge filter (2)
@@ -27,9 +27,9 @@ MIN_SIZE2 = 100000/RSIZE_FACTOR # minimum size (pixels) for binary objects (2000
 BORDER_CUTOFF = 0.75 # remove border cells (from 0 to 1, the smaller the less stringent) 
 MIN_CELL_AREA = 50 # minimum size (pixels) for segemented cell to be considered valid 
 
-#%% Open Stack from ROOTPATH+FILENAME
+#%% Open Stack from ROOTPATH+STACKNAME
 
-stack = io.imread(ROOTPATH+FILENAME)
+stack = io.imread(ROOTPATH+STACKNAME)
 nT = stack.shape[0] # Get Stack dimension (t)
 nY = stack.shape[1] # Get Stack dimension (y)
 nX = stack.shape[2] # Get Stack dimension (x)
@@ -260,11 +260,11 @@ wat_conn = np.stack([arrays for arrays in output_list], axis=0)
     
 #%% Save images
 
-io.imsave(ROOTPATH+FILENAME[0:-4]+'_rsize.tif', rsize.astype('uint16'), check_contrast=True)
-io.imsave(ROOTPATH+FILENAME[0:-4]+'_ridge.tif', ridge.astype('float32'), check_contrast=True)
-io.imsave(ROOTPATH+FILENAME[0:-4]+'_mask.tif', mask.astype('uint8')*255, check_contrast=True)
-io.imsave(ROOTPATH+FILENAME[0:-4]+'_labels.tif', labels.astype('uint16'), check_contrast=True)
-io.imsave(ROOTPATH+FILENAME[0:-4]+'_wat.tif', wat.astype('uint8')*255, check_contrast=True)
-io.imsave(ROOTPATH+FILENAME[0:-4]+'_labels_track.tif', labels_track.astype('uint16'), check_contrast=True)
-io.imsave(ROOTPATH+FILENAME[0:-4]+'_small_mask.tif', small_mask.astype('uint8')*255, check_contrast=True)
-io.imsave(ROOTPATH+FILENAME[0:-4]+'_wat_conn.tif', wat_conn.astype('uint8'), check_contrast=True)
+io.imsave(ROOTPATH+STACKNAME[0:-4]+'_rsize.tif', rsize.astype('uint16'), check_contrast=True)
+io.imsave(ROOTPATH+STACKNAME[0:-4]+'_ridge.tif', ridge.astype('float32'), check_contrast=True)
+io.imsave(ROOTPATH+STACKNAME[0:-4]+'_mask.tif', mask.astype('uint8')*255, check_contrast=True)
+io.imsave(ROOTPATH+STACKNAME[0:-4]+'_labels.tif', labels.astype('uint16'), check_contrast=True)
+io.imsave(ROOTPATH+STACKNAME[0:-4]+'_wat.tif', wat.astype('uint8')*255, check_contrast=True)
+io.imsave(ROOTPATH+STACKNAME[0:-4]+'_labels_track.tif', labels_track.astype('uint16'), check_contrast=True)
+io.imsave(ROOTPATH+STACKNAME[0:-4]+'_small_mask.tif', small_mask.astype('uint8')*255, check_contrast=True)
+io.imsave(ROOTPATH+STACKNAME[0:-4]+'_wat_conn.tif', wat_conn.astype('uint8'), check_contrast=True)
