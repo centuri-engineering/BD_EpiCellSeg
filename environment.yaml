@@ -1,0 +1,10 @@
+name: BD_EpiCellSeg
+channels:
+- conda-forge
+
+dependencies:
+- python>=3.8
+- scikit-image
+- tifffile
+- matplotlib-base
+- jupyterlab
